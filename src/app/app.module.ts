@@ -10,6 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
 import {AngularFireModule} from "angularfire2";
+import {MenuPage} from "../pages/menu/menu";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDDr4odv1_woIeygBZMBAN6vP8knRA60s4",
@@ -24,7 +25,8 @@ const PAGES = [
   App,
   HomePage,
   LoginPage,
-  RegisterPage
+  RegisterPage,
+  MenuPage
 ];
 
 @NgModule({

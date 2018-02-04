@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 import {NgForm} from "@angular/forms";
 import {RegisterPage} from "../register/register";
+import {MenuPage} from "../menu/menu";
 
 @IonicPage()
 @Component({
@@ -15,7 +16,7 @@ export class LoginPage {
   ) {}
 
   onLogin(form: NgForm): void {
-    console.log(form.value);
+    this.navCtrl.setRoot(MenuPage);
   }
 
   onGoToRegister(): void {
