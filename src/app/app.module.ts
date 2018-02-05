@@ -11,6 +11,8 @@ import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
 import {AngularFireModule} from "angularfire2";
 import {MenuPage} from "../pages/menu/menu";
+import { AuthProvider } from '../providers/auth/auth';
+import {AngularFireAuthModule} from "angularfire2/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDDr4odv1_woIeygBZMBAN6vP8knRA60s4",
@@ -34,14 +36,16 @@ const PAGES = [
   imports: [
     BrowserModule,
     IonicModule.forRoot(App),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: PAGES,
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthProvider
   ]
 })
 export class AppModule {}
