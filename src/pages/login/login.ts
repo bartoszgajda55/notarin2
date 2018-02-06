@@ -3,6 +3,7 @@ import {IonicPage, NavController} from 'ionic-angular';
 import {NgForm} from "@angular/forms";
 import {RegisterPage} from "../register/register";
 import {MenuPage} from "../menu/menu";
+import {AuthProvider} from "../../providers/auth/auth";
 
 @IonicPage()
 @Component({
@@ -12,11 +13,19 @@ import {MenuPage} from "../menu/menu";
 export class LoginPage {
 
   constructor(
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private authProvider: AuthProvider
   ) {}
 
   onLogin(form: NgForm): void {
-    this.navCtrl.setRoot(MenuPage);
+    this.authProvider.loginWithEmailAndPassword(form.value.email, form.value.password)
+      .then(value => {
+        console.log(value);
+        this.navCtrl.setRoot(MenuPage);
+      })
+      .catch(reason => {
+        console.log(reason);
+      });
   }
 
   onGoToRegister(): void {

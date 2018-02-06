@@ -25,7 +25,7 @@
             </ion-item>
           </ion-list>
           <ion-row>
-            <button type="submit" ion-button block color="lighter">Register</button>
+            <button type="submit" ion-button block color="lighter" [disabled]="!f.valid">Register</button>
           </ion-row>
         </form>
       </ion-col>
