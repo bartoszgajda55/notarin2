@@ -1,6 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
 import {IonicPage, Nav} from 'ionic-angular';
 import {HomePage} from "../home/home";
+import {AuthProvider} from "../../providers/auth/auth";
+import {Subscription} from "rxjs/Subscription";
+import {User} from "firebase/app";
 
 @IonicPage()
 @Component({
@@ -8,21 +11,33 @@ import {HomePage} from "../home/home";
   templateUrl: 'menu.html',
 })
 export class MenuPage {
-  @ViewChild(Nav) nav: Nav;
+  @ViewChild(Nav)
+  private nav: Nav;
+  private rootPage: any = HomePage;
+  private pages: Array<{title: string, component: any}>;
+  private userSubscription: Subscription;
+  private user: User;
 
-  rootPage: any = HomePage;
-
-  pages: Array<{title: string, component: any}>;
-
-  constructor() {
+  constructor(
+    private authProvider: AuthProvider
+  ) {
     this.pages = [
       { title: 'Home', component: HomePage }
     ];
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
+  ionViewDidEnter(): void {
+    this.userSubscription = this.authProvider.getCurrentUserState()
+      .subscribe(value => {
+        this.user = value;
+      })
+  }
+
+  ionViewDidLeave(): void {
+    this.userSubscription.unsubscribe();
+  }
+
+  openPage(page): void {
     this.nav.setRoot(page.component);
   }
 }

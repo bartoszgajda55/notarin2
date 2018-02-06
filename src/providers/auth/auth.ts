@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "angularfire2/auth";
 import * as firebase from 'firebase/app';
+import {Observable} from "rxjs/Observable";
+import {User} from "firebase/app";
 
 @Injectable()
 export class AuthProvider {
@@ -15,5 +17,9 @@ export class AuthProvider {
 
   loginWithEmailAndPassword(email: string, password: string): Promise<any> {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  getCurrentUserState(): Observable<User> {
+    return this.afAuth.authState;
   }
 }

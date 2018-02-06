@@ -18,14 +18,15 @@ export class LoginPage {
   ) {}
 
   onLogin(form: NgForm): void {
-    this.authProvider.loginWithEmailAndPassword(form.value.email, form.value.password)
-      .then(value => {
-        console.log(value);
-        this.navCtrl.setRoot(MenuPage);
-      })
-      .catch(reason => {
-        console.log(reason);
-      });
+    // this.authProvider.loginWithEmailAndPassword(form.value.email, form.value.password)
+    //   .then(value => {
+    //     console.log(value);
+    //     this.navCtrl.setRoot(MenuPage);
+    //   })
+    //   .catch(reason => {
+    //     console.log(reason);
+    //   });
+    this.navCtrl.setRoot(MenuPage);
   }
 
   onGoToRegister(): void {
