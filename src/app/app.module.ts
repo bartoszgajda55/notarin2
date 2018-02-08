@@ -13,6 +13,7 @@ import {AngularFireModule} from "angularfire2";
 import {MenuPage} from "../pages/menu/menu";
 import { AuthProvider } from '../providers/auth/auth';
 import {AngularFireAuthModule} from "angularfire2/auth";
+import {SettingsPage} from "../pages/settings/settings";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDDr4odv1_woIeygBZMBAN6vP8knRA60s4",
@@ -28,7 +29,8 @@ const PAGES = [
   HomePage,
   LoginPage,
   RegisterPage,
-  MenuPage
+  MenuPage,
+  SettingsPage
 ];
 
 @NgModule({

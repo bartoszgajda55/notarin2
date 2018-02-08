@@ -1,9 +1,10 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, Nav} from 'ionic-angular';
+import {IonicPage, Nav, NavController} from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {AuthProvider} from "../../providers/auth/auth";
 import {Subscription} from "rxjs/Subscription";
 import {User} from "firebase/app";
+import {SettingsPage} from "../settings/settings";
 
 @IonicPage()
 @Component({
@@ -19,7 +20,8 @@ export class MenuPage {
   private user: User;
 
   constructor(
-    private authProvider: AuthProvider
+    private authProvider: AuthProvider,
+    private navCtrl: NavController
   ) {
     this.pages = [
       { title: 'Home', component: HomePage }
@@ -39,5 +41,9 @@ export class MenuPage {
 
   openPage(page): void {
     this.nav.setRoot(page.component);
+  }
+
+  goToSettings(): void {
+    this.navCtrl.push(SettingsPage);
   }
 }
