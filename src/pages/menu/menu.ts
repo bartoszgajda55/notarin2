@@ -5,6 +5,7 @@ import {AuthProvider} from "../../providers/auth/auth";
 import {Subscription} from "rxjs/Subscription";
 import {User} from "firebase/app";
 import {SettingsPage} from "../settings/settings";
+import {LoginPage} from "../login/login";
 
 @IonicPage()
 @Component({
@@ -45,5 +46,15 @@ export class MenuPage {
 
   goToSettings(): void {
     this.navCtrl.push(SettingsPage);
+  }
+
+  onLogOut(): void {
+    this.authProvider.logoutUser()
+      .then(value => {
+        this.navCtrl.setRoot(LoginPage);
+      })
+      .catch(reason => {
+
+      })
   }
 }

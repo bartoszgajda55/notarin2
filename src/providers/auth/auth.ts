@@ -22,4 +22,8 @@ export class AuthProvider {
   getCurrentUserState(): Observable<User> {
     return this.afAuth.authState;
   }
+
+  logoutUser(): Promise<any> {
+    return this.afAuth.auth.signOut();
+  }
 }
