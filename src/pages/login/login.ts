@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, ToastController} from 'ionic-angular';
 import {NgForm} from "@angular/forms";
 import {RegisterPage} from "../register/register";
 import {MenuPage} from "../menu/menu";
@@ -14,19 +14,31 @@ export class LoginPage {
 
   constructor(
     public navCtrl: NavController,
-    private authProvider: AuthProvider
+    private authProvider: AuthProvider,
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController
   ) {}
 
   onLogin(form: NgForm): void {
-    // this.authProvider.loginWithEmailAndPassword(form.value.email, form.value.password)
-    //   .then(value => {
-    //     console.log(value);
-    //     this.navCtrl.setRoot(MenuPage);
-    //   })
-    //   .catch(reason => {
-    //     console.log(reason);
-    //   });
-    this.navCtrl.setRoot(MenuPage);
+    let loading = this.loadingCtrl.create({
+      content: 'Logging you in...',
+      dismissOnPageChange: true
+    });
+    loading.present();
+    this.authProvider.loginWithEmailAndPassword(form.value.email, form.value.password)
+      .then(value => {
+        this.navCtrl.setRoot(MenuPage);
+      })
+      .catch(reason => {
+        loading.dismiss();
+        let toast = this.toastCtrl.create({
+          message: reason.message,
+          duration: 3000,
+          position: 'top'
+        });
+        toast.present();
+      });
+    // this.navCtrl.setRoot(MenuPage);
   }
 
   onGoToRegister(): void {
