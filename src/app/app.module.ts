@@ -14,6 +14,7 @@ import {MenuPage} from "../pages/menu/menu";
 import { AuthProvider } from '../providers/auth/auth';
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {SettingsPage} from "../pages/settings/settings";
+import {ComponentsModule} from "../components/components.module";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDDr4odv1_woIeygBZMBAN6vP8knRA60s4",
@@ -39,7 +40,8 @@ const PAGES = [
     BrowserModule,
     IonicModule.forRoot(App),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: PAGES,
