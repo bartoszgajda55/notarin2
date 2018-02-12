@@ -25,7 +25,8 @@ export class MenuPage {
     private navCtrl: NavController
   ) {
     this.pages = [
-      { title: 'Home', component: HomePage }
+      { title: 'Home', component: HomePage },
+      { title: 'Settings', component: SettingsPage }
     ];
   }
 
@@ -42,10 +43,6 @@ export class MenuPage {
 
   openPage(page): void {
     this.nav.setRoot(page.component);
-  }
-
-  goToSettings(): void {
-    this.navCtrl.push(SettingsPage);
   }
 
   onLogOut(): void {

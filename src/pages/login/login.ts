@@ -25,7 +25,8 @@ export class LoginPage {
       dismissOnPageChange: true
     });
     loading.present();
-    this.authProvider.loginWithEmailAndPassword(form.value.email, form.value.password)
+    // this.authProvider.loginWithEmailAndPassword(form.value.email, form.value.password)
+    this.authProvider.loginWithEmailAndPassword("test@test.com", "password")
       .then(value => {
         this.navCtrl.setRoot(MenuPage);
       })
