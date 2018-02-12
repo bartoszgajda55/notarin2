@@ -15,6 +15,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {SettingsPage} from "../pages/settings/settings";
 import {ComponentsModule} from "../components/components.module";
+import {CreateNotePage} from "../pages/create-note/create-note";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDDr4odv1_woIeygBZMBAN6vP8knRA60s4",
@@ -31,7 +32,8 @@ const PAGES = [
   LoginPage,
   RegisterPage,
   MenuPage,
-  SettingsPage
+  SettingsPage,
+  CreateNotePage
 ];
 
 @NgModule({

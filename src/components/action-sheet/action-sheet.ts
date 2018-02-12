@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {ActionSheetController} from "ionic-angular";
+import {ActionSheetController, NavController} from "ionic-angular";
+import {CreateNotePage} from "../../pages/create-note/create-note";
 
 @Component({
   selector: 'action-sheet',
@@ -8,7 +9,8 @@ import {ActionSheetController} from "ionic-angular";
 export class ActionSheetComponent {
 
   constructor(
-    private actionSheetCtrl: ActionSheetController
+    private actionSheetCtrl: ActionSheetController,
+    private navCtrl: NavController
   ) {}
 
   presentActionSheet(): void {
@@ -19,19 +21,19 @@ export class ActionSheetComponent {
           text: 'Text Note',
           icon: 'create',
           handler: () => {
-            console.log('Text clicked');
+            this.navCtrl.push(CreateNotePage);
           }
         },{
           text: 'Item List',
           icon: 'list',
           handler: () => {
-            console.log('Item clicked');
+            this.navCtrl.push(CreateNotePage);
           }
         },{
           text: 'Image Note',
           icon: 'image',
           handler: () => {
-            console.log('Image clicked');
+            this.navCtrl.push(CreateNotePage);
           }
         },{
           text: 'Cancel',
