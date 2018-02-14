@@ -8,4 +8,12 @@ export class Note {
   category: Category;
   list: ListItem[];
   images: Image[];
+
+  constructor(title: string, text: string, category: Category, list: ListItem[], images: Image[]) {
+    this.title = title;
+    this.text = text;
+    this.category = category;
+    this.list = list;
+    this.images = images;
+  }
 }
