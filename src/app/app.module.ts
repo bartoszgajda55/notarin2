@@ -16,6 +16,8 @@ import {AngularFireAuthModule} from "angularfire2/auth";
 import {SettingsPage} from "../pages/settings/settings";
 import {ComponentsModule} from "../components/components.module";
 import {CreateNotePage} from "../pages/create-note/create-note";
+import { NoteProvider } from '../providers/note/note';
+import {AngularFirestoreModule} from "angularfire2/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDDr4odv1_woIeygBZMBAN6vP8knRA60s4",
@@ -43,7 +45,8 @@ const PAGES = [
     IonicModule.forRoot(App),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    ComponentsModule
+    ComponentsModule,
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: PAGES,
@@ -51,7 +54,8 @@ const PAGES = [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    NoteProvider
   ]
 })
 export class AppModule {}
