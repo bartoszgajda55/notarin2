@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import {NoteProvider} from "../../providers/note/note";
+import {Observable} from "rxjs/Observable";
+import {Note} from "../../models/note.model";
 
 @IonicPage()
 @Component({
@@ -8,16 +10,14 @@ import {NoteProvider} from "../../providers/note/note";
   templateUrl: 'home.html',
 })
 export class HomePage {
+  private notes: Observable<Note[]>;
 
   constructor(
     private noteProvider: NoteProvider
   ) { }
 
   ionViewDidLoad() {
-    this.noteProvider.getUserNotesCollection()
-      .subscribe(value => {
-        console.log(value);
-      });
+    this.notes = this.noteProvider.getUserNotesCollection();
   }
 
 }

@@ -8,9 +8,13 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Home</h3>
-  <!--<div *ngFor="let note of notes | async">-->
-    <!--<h3>{{note | json}}</h3>-->
-  <!--</div>-->
+  <ion-card *ngFor="let note of notes | async">
+    <ion-card-header>
+      {{note.title}}
+    </ion-card-header>
+    <ion-card-content>
+      {{note.text}}
+    </ion-card-content>
+  </ion-card>
   <action-sheet></action-sheet>
 </ion-content>
