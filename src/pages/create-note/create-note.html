@@ -4,14 +4,18 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <p>Create Note</p>
+<ion-content no-padding>
+  <form #f="ngForm">
+    <textarea
+      name="noteText"
+      id="noteText"
+      [(ngModel)]="textContent"
+      placeholder="Add text to your note"></textarea>
+  </form>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <ion-buttons>
-      <button ion-button>Save Note</button>
-    </ion-buttons>
+    <button type="submit" ion-button block (click)="saveNote()">Save Note</button>
   </ion-toolbar>
 </ion-footer>

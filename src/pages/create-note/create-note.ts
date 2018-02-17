@@ -7,5 +7,9 @@ import { IonicPage } from 'ionic-angular';
   templateUrl: 'create-note.html',
 })
 export class CreateNotePage {
+  textContent: string  = "";
 
+  saveNote(): void {
+
+  }
 }
