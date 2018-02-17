@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
+import {NoteProvider} from "../../providers/note/note";
+import {Note} from "../../models/note.model";
 
 @IonicPage()
 @Component({
@@ -9,7 +11,11 @@ import { IonicPage } from 'ionic-angular';
 export class CreateNotePage {
   textContent: string  = "";
 
-  saveNote(): void {
+  constructor(
+    private noteProvider: NoteProvider
+  ) { }
 
+  saveNote(): void {
+    // let note: Note = new Note();
   }
 }

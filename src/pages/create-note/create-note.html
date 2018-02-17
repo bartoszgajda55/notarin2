@@ -6,7 +6,13 @@
 
 <ion-content no-padding>
   <form #f="ngForm">
+    <input
+      type="text"
+      class="formInput"
+      placeholder="Add title">
+    <hr>
     <textarea
+      class="formInput"
       name="noteText"
       id="noteText"
       [(ngModel)]="textContent"
