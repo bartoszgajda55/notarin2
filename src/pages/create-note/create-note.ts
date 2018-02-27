@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import {IonicPage, NavController} from 'ionic-angular';
 import {NoteProvider} from "../../providers/note/note";
 import {Note} from "../../models/note.model";
+import {NgForm} from "@angular/forms";
+import {Category} from "../../models/category.model";
 
 @IonicPage()
 @Component({
@@ -9,13 +11,20 @@ import {Note} from "../../models/note.model";
   templateUrl: 'create-note.html',
 })
 export class CreateNotePage {
-  textContent: string  = "";
 
   constructor(
-    private noteProvider: NoteProvider
+    private noteProvider: NoteProvider,
+    private navCtrl: NavController
   ) { }
 
-  saveNote(): void {
-    // let note: Note = new Note();
+  saveNote(form: NgForm): void {
+    this.noteProvider.addNoteToUserNotesCollection(
+      new Note(form.value.title, form.value.noteText, new Category("General"), [], []))
+      .then(value => {
+        this.navCtrl.pop();
+      })
+      .catch(reason => {
+        console.log(reason);
+      });
   }
 }

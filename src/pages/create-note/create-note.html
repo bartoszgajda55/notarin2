@@ -9,19 +9,21 @@
     <input
       type="text"
       class="formInput"
+      name="title"
+      ngModel
       placeholder="Add title">
     <hr>
     <textarea
       class="formInput"
       name="noteText"
       id="noteText"
-      [(ngModel)]="textContent"
+      ngModel
       placeholder="Add text to your note"></textarea>
   </form>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <button type="submit" ion-button block (click)="saveNote()">Save Note</button>
+    <button type="submit" ion-button block (click)="saveNote(f)">Save Note</button>
   </ion-toolbar>
 </ion-footer>

@@ -26,7 +26,8 @@ export class NoteProvider {
   }
 
   addNoteToUserNotesCollection(note: Note): Promise<DocumentReference> {
-    return this.notesCollection.add(note)
+    let data = JSON.parse(JSON.stringify(note)); // Looks stupid but it works
+    return this.notesCollection.add(data)
   }
 
 }
