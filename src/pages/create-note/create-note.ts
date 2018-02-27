@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, LoadingController, NavController} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {NoteProvider} from "../../providers/note/note";
 import {Note} from "../../models/note.model";
 import {NgForm} from "@angular/forms";
@@ -11,12 +11,16 @@ import {Category} from "../../models/category.model";
   templateUrl: 'create-note.html',
 })
 export class CreateNotePage {
+  callback: any;
 
   constructor(
     private noteProvider: NoteProvider,
     private navCtrl: NavController,
-    private loadingCtrl: LoadingController
-  ) { }
+    private loadingCtrl: LoadingController,
+    private navParams: NavParams
+  ) {
+    this.callback = this.navParams.get('callback');
+  }
 
   saveNote(form: NgForm): void {
     let loading = this.loadingCtrl.create({
@@ -27,7 +31,7 @@ export class CreateNotePage {
     this.noteProvider.addNoteToUserNotesCollection(
       new Note(form.value.title, form.value.noteText, new Category("General"), [], []))
       .then(value => {
-        this.navCtrl.pop();
+        this.callback("Note Saved").then(() => { this.navCtrl.pop() });
       })
       .catch(reason => {
         console.log(reason);
