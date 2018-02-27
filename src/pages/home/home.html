@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="card-container">
   <ion-card *ngFor="let note of notes | async">
     <ion-card-header>
       <strong>{{note.title}}</strong>
@@ -16,6 +16,7 @@
       {{note.text}}
     </ion-card-content>
   </ion-card>
+  <div class="card-spacer"></div>
 </ion-content>
 
 <action-sheet></action-sheet>
