@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavParams} from 'ionic-angular';
+import {IonicPage, NavParams, PopoverController} from 'ionic-angular';
 import {Note} from "../../models/note.model";
+import {NoteOptionsPage} from "../note-options/note-options";
 
 @IonicPage()
 @Component({
@@ -10,10 +11,17 @@ import {Note} from "../../models/note.model";
 export class ViewNotePage {
   private note: Note;
 
-  constructor(private navParams: NavParams) {
+  constructor(private navParams: NavParams, private popoverCtrl: PopoverController) {
   }
 
   ionViewDidLoad() {
     this.note = this.navParams.get("note");
+  }
+
+  presentPopover(event): void {
+    let popover = this.popoverCtrl.create(NoteOptionsPage);
+    popover.present({
+      ev: event
+    });
   }
 }
