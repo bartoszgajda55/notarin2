@@ -18,6 +18,7 @@ import {ComponentsModule} from "../components/components.module";
 import {CreateNotePage} from "../pages/create-note/create-note";
 import { NoteProvider } from '../providers/note/note';
 import {AngularFirestoreModule} from "angularfire2/firestore";
+import {ViewNotePage} from "../pages/view-note/view-note";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDDr4odv1_woIeygBZMBAN6vP8knRA60s4",
@@ -35,7 +36,8 @@ const PAGES = [
   RegisterPage,
   MenuPage,
   SettingsPage,
-  CreateNotePage
+  CreateNotePage,
+  ViewNotePage
 ];
 
 @NgModule({
