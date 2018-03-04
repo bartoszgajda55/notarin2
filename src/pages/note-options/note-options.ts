@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import {IonicPage, NavParams} from 'ionic-angular';
+import {Note} from "../../models/note.model";
 
 @IonicPage()
 @Component({
@@ -7,6 +8,11 @@ import { IonicPage } from 'ionic-angular';
   templateUrl: 'note-options.html',
 })
 export class NoteOptionsPage {
+  private note: Note;
+
+  constructor(private navParams: NavParams) {
+    this.note = this.navParams.get("note");
+  }
 
   editNote(): void {
 

@@ -30,4 +30,7 @@ export class NoteProvider {
     return this.notesCollection.add(data)
   }
 
+  deleteNoteFromUserCollection(note: Note): void {
+  }
+
 }

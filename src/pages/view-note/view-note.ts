@@ -19,7 +19,7 @@ export class ViewNotePage {
   }
 
   presentPopover(event): void {
-    let popover = this.popoverCtrl.create(NoteOptionsPage);
+    let popover = this.popoverCtrl.create(NoteOptionsPage, {note: this.note});
     popover.present({
       ev: event
     });
