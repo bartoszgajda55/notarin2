@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
+import {IonicPage, NavController, ToastController} from 'ionic-angular';
 import {NoteProvider} from "../../providers/note/note";
 import {Observable} from "rxjs/Observable";
 import {Note} from "../../models/note.model";
@@ -14,7 +14,8 @@ export class HomePage {
   private notes: Observable<Note[]>;
 
   constructor(private noteProvider: NoteProvider,
-              private navCtrl: NavController) {
+              private navCtrl: NavController,
+              private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -22,7 +23,19 @@ export class HomePage {
   }
 
   displayNote(note: Note): void {
-    this.navCtrl.push(ViewNotePage, {note: note});
+    this.navCtrl.push(ViewNotePage, {note: note, callback: this.showToaster});
+  }
+
+  showToaster = (message) => {
+    return new Promise((resolve, reject) => {
+      let toast = this.toastCtrl.create({
+        message: message,
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      resolve();
+    });
   }
 
 }

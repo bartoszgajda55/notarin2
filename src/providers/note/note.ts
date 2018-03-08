@@ -33,10 +33,11 @@ export class NoteProvider {
 
   addNoteToUserNotesCollection(note: Note): Promise<DocumentReference> {
     let data = JSON.parse(JSON.stringify(note)); // Looks stupid but it works
-    return this.notesCollection.add(data)
+    return this.notesCollection.add(data);
   }
 
-  deleteNoteFromUserCollection(note: Note): void {
+  deleteNoteFromUserCollection(note: Note): Promise<void> {
+    return this.notesCollection.doc(note.id).delete()
   }
 
 }
