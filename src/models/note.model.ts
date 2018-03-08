@@ -3,6 +3,7 @@ import {ListItem} from "./list-item.model";
 import {Image} from "./image.model";
 
 export class Note {
+  id?: string;
   title: string;
   text: string;
   category: Category;

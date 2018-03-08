@@ -22,7 +22,13 @@ export class NoteProvider {
 
   getUserNotesCollection(): Observable<Note[]> {
     this.notesCollection = this.afs.collection<Note>('/users/' + this.userId + '/notes');
-    return this.notesCollection.valueChanges();
+    return this.notesCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Note;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
   }
 
   addNoteToUserNotesCollection(note: Note): Promise<DocumentReference> {
