@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Note} from "../../models/note.model";
 import {NoteProvider} from "../../providers/note/note";
+import {CreateNotePage} from "../create-note/create-note";
 
 @IonicPage()
 @Component({
@@ -22,19 +23,30 @@ export class NoteOptionsPage {
   }
 
   editNote(): void {
-
+    this.navCtrl.push(CreateNotePage, {
+      note: this.note,
+      callback: this.callback,
+      navCallback: this.popPopover()
+    });
   }
 
   deleteNote(): void {
-    this.noteProvider.deleteNoteFromUserCollection(this.note)
+    this.noteProvider.deleteNoteFromUserNotesCollection(this.note)
       .then(value => {
-        this.callback("Note Deleted");
         this.navCtrl.pop();
+        this.callback("Note Deleted");
         this.navCallback();
       }).catch(reason => {
-        this.callback(reason);
         this.navCtrl.pop();
+        this.callback(reason);
         this.navCallback();
+    });
+  }
+
+  popPopover = () => {
+    return new Promise((resolve, reject) => {
+      this.navCtrl.pop();
+      resolve();
     });
   }
 }

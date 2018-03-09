@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Create Note</ion-title>
+    <ion-title>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -10,14 +10,14 @@
       type="text"
       class="formInput"
       name="title"
-      ngModel
+      [(ngModel)]="note.title"
       placeholder="Add title">
     <hr>
     <textarea
       class="formInput"
       name="noteText"
       id="noteText"
-      ngModel
+      [(ngModel)]="note.text"
       placeholder="Add text to your note"></textarea>
   </form>
 </ion-content>

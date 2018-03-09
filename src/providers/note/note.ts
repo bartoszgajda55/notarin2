@@ -22,11 +22,11 @@ export class NoteProvider {
 
   getUserNotesCollection(): Observable<Note[]> {
     this.notesCollection = this.afs.collection<Note>('/users/' + this.userId + '/notes');
-    return this.notesCollection.snapshotChanges().map(actions => {
-      return actions.map(a => {
-        const data = a.payload.doc.data() as Note;
-        const id = a.payload.doc.id;
-        return { id, ...data };
+    return this.notesCollection.snapshotChanges().map(data => {
+      return data.map(a => {
+        const note = a.payload.doc.data() as Note;
+        note.id = a.payload.doc.id;
+        return note;
       });
     });
   }
@@ -36,8 +36,12 @@ export class NoteProvider {
     return this.notesCollection.add(data);
   }
 
-  deleteNoteFromUserCollection(note: Note): Promise<void> {
+  deleteNoteFromUserNotesCollection(note: Note): Promise<void> {
     return this.notesCollection.doc(note.id).delete()
+  }
+
+  updateNoteInUserNotesCollection(note: Note): Promise<void> {
+    return this.notesCollection.doc(note.id).set(note);
   }
 
 }

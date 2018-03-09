@@ -3,7 +3,6 @@ import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angu
 import {NoteProvider} from "../../providers/note/note";
 import {Note} from "../../models/note.model";
 import {NgForm} from "@angular/forms";
-import {Category} from "../../models/category.model";
 
 @IonicPage()
 @Component({
@@ -12,6 +11,10 @@ import {Category} from "../../models/category.model";
 })
 export class CreateNotePage {
   callback: any;
+  navCallback: any;
+  private note: Note = new Note();
+  title: string = "Create Note";
+  editMode: boolean = false;
 
   constructor(
     private noteProvider: NoteProvider,
@@ -20,21 +23,43 @@ export class CreateNotePage {
     private navParams: NavParams
   ) {
     this.callback = this.navParams.get('callback');
+    this.navCallback = this.navParams.get('navCallback');
+    let note = this.navParams.get('note');
+    if (note) {
+      this.note = note;
+      this.title = "Edit Note";
+      this.editMode = true;
+    }
   }
 
   saveNote(form: NgForm): void {
+    this.showLoader();
+    if (this.editMode) {
+      this.noteProvider.updateNoteInUserNotesCollection(this.note)
+        .then(value => {
+          this.navCtrl.pop();
+          this.callback("Note Updated");
+          this.navCallback();
+        })
+        .catch(reason => {
+          console.log(reason);
+        })
+    } else {
+      this.noteProvider.addNoteToUserNotesCollection(this.note)
+        .then(value => {
+          this.callback("Note Saved").then(() => { this.navCtrl.pop() });
+        })
+        .catch(reason => {
+          console.log(reason);
+        });
+    }
+  }
+
+  private showLoader() {
     let loading = this.loadingCtrl.create({
       content: 'Saving note...',
       dismissOnPageChange: true
     });
     loading.present();
-    this.noteProvider.addNoteToUserNotesCollection(
-      new Note(form.value.title, form.value.noteText, new Category("General"), [], []))
-      .then(value => {
-        this.callback("Note Saved").then(() => { this.navCtrl.pop() });
-      })
-      .catch(reason => {
-        console.log(reason);
-      });
   }
 }
