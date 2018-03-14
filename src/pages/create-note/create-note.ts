@@ -58,7 +58,8 @@ export class CreateNotePage {
   private showLoader() {
     let loading = this.loadingCtrl.create({
       content: 'Saving note...',
-      dismissOnPageChange: true
+      dismissOnPageChange: true,
+      duration: 2000
     });
     loading.present();
   }

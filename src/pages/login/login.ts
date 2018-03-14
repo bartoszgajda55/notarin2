@@ -34,7 +34,7 @@ export class LoginPage {
         loading.dismiss();
         let toast = this.toastCtrl.create({
           message: reason.message,
-          duration: 3000,
+          duration: 2000,
           position: 'top'
         });
         toast.present();

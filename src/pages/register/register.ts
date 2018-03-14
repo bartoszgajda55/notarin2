@@ -22,7 +22,7 @@ export class RegisterPage {
     if (form.value.password1 !== form.value.password2) {
       let toast = this.toastCtrl.create({
         message: "Passwords don't match",
-        duration: 3000,
+        duration: 2000,
         position: 'top'
       });
       toast.present();
@@ -41,7 +41,7 @@ export class RegisterPage {
         loading.dismiss();
         let toast = this.toastCtrl.create({
           message: reason.message,
-          duration: 3000,
+          duration: 2000,
           position: 'top'
         });
         toast.present();
