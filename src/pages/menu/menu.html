@@ -8,12 +8,13 @@
   <ion-content>
     <ion-grid>
       <ion-row>
-        <ion-col col-4>
-          <img src="assets/icon/icon.png" alt="Avatar">
-        </ion-col>
-        <ion-col col-8>
+        <ion-col>
           <ion-row>
-            <ion-col>{{user?.email}}</ion-col>
+            <ion-col>
+              <span class="username">
+               {{user?.email}}
+              </span>
+            </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
