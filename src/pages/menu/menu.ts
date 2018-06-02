@@ -34,7 +34,6 @@ export class MenuPage {
     this.userSubscription = this.authProvider.getCurrentUserState()
       .subscribe(value => {
         this.user = value;
-        console.log(value);
       })
   }
 
