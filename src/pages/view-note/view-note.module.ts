@@ -3,9 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { ViewNotePage } from './view-note';
 
 @NgModule({
-  declarations: [
-    ViewNotePage,
-  ],
+  declarations: [],
   imports: [
     IonicPageModule.forChild(ViewNotePage),
   ],
